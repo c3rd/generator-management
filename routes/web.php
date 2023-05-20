@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GeneratorController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/generators', [GeneratorController::class, 'index'])->name('generators');
+    Route::get('/generators/create', [GeneratorController::class, 'create'])->name('generators.create');
+    Route::post('/generators', [GeneratorController::class, 'store'])->name('generators.store');
+    Route::get('/generators/{id}/edit', [GeneratorController::class, 'edit'])->name('generators.edit');
+    Route::put('/generators/{id}', [GeneratorController::class, 'update'])->name('generators.update');
 });
 
 require __DIR__.'/auth.php';
