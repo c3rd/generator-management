@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/generators', [GeneratorController::class, 'store'])->name('generators.store');
     Route::get('/generators/{id}/edit', [GeneratorController::class, 'edit'])->name('generators.edit');
     Route::put('/generators/{id}', [GeneratorController::class, 'update'])->name('generators.update');
+    Route::resource('employees', GeneratorController::class);
 });
 
 require __DIR__.'/auth.php';
