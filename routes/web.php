@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\GeneratorController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -40,7 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/generators', [GeneratorController::class, 'store'])->name('generators.store');
     Route::get('/generators/{id}/edit', [GeneratorController::class, 'edit'])->name('generators.edit');
     Route::put('/generators/{id}', [GeneratorController::class, 'update'])->name('generators.update');
-    Route::resource('employees', GeneratorController::class);
+    Route::resource('employees', EmployeeController::class);
 });
 
 require __DIR__.'/auth.php';

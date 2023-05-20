@@ -2,10 +2,15 @@
     <Head title="Adicionar Gerador" />
     <AuthenticatedLayout>
         <template #header>
-            <div class="flex gap-5">
-
-                <Link :href="route('generators')"><i class="fa-solid fa-info"></i>Voltar</Link>
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ pageProps.generator ? 'Editar Gerador' : 'Adicionar Gerador' }}</h2>
+            <div class="flex items-center gap-5">
+                <Link :href="route('generators')">
+                    <div
+                        class="w-10 h-10 flex items-center hover:bg-black hover:text-white justify-center text-2xl border-2 border-black rounded-full">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </div>
+                </Link>
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ pageProps.generator ? 'Editar Gerador' :
+                    'Adicionar Gerador' }}</h2>
             </div>
         </template>
         <div class="container py-12">
@@ -44,7 +49,9 @@
 
                     </div>
                     <div class="flex justify-center">
-                        <PrimaryButton class="mt-5 ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">{{ pageProps.generator ? 'Atualizar' : 'Adicionar' }}</PrimaryButton>
+                        <PrimaryButton class="mt-5 ml-4" :class="{ 'opacity-25': form.processing }"
+                            :disabled="form.processing">{{ pageProps.generator ? 'Atualizar' : 'Adicionar' }}
+                        </PrimaryButton>
                     </div>
                 </form>
             </div>
