@@ -36,11 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/generators', [GeneratorController::class, 'index'])->name('generators');
-    Route::get('/generators/create', [GeneratorController::class, 'create'])->name('generators.create');
-    Route::post('/generators', [GeneratorController::class, 'store'])->name('generators.store');
-    Route::get('/generators/{id}/edit', [GeneratorController::class, 'edit'])->name('generators.edit');
-    Route::put('/generators/{id}', [GeneratorController::class, 'update'])->name('generators.update');
+    Route::resource('generators', GeneratorController::class);
     Route::resource('employees', EmployeeController::class);
 });
 

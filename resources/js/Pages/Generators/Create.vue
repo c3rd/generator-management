@@ -3,7 +3,7 @@
     <AuthenticatedLayout>
         <template #header>
             <div class="flex items-center gap-5">
-                <Link :href="route('generators')">
+                <Link :href="route('generators.index')">
                     <div
                         class="w-10 h-10 flex items-center hover:bg-black hover:text-white justify-center text-2xl border-2 border-black rounded-full">
                         <i class="fa-solid fa-arrow-left"></i>
