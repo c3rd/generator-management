@@ -26,12 +26,16 @@ class GeneratorController extends Controller
                     'brand' => $user->brand,
                     'hourmeter' => $user->hourmeter,
                 ]),
-            'filters' => $request->input('search'),
+            'filters' => $request->only(['search']),
         ]);
     }
 
     public function show($id)
     {
+        $generator = Generator::find($id);
+        return Inertia::render('Generators/Show', [
+            'generator' => $generator
+        ]);
     }
 
     public function create()

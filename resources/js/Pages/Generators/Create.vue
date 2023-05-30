@@ -3,12 +3,7 @@
     <AuthenticatedLayout>
         <template #header>
             <div class="flex items-center gap-5">
-                <Link :href="route('generators.index')">
-                    <div
-                        class="w-10 h-10 flex items-center hover:bg-black hover:text-white justify-center text-2xl border-2 border-black rounded-full">
-                        <i class="fa-solid fa-arrow-left"></i>
-                    </div>
-                </Link>
+                <GoBack />
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ pageProps.generator ? 'Editar Gerador' :
                     'Adicionar Gerador' }}</h2>
             </div>
@@ -66,6 +61,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
+import GoBack from '@/Components/GoBack.vue';
 
 const pageProps = usePage().props;
 

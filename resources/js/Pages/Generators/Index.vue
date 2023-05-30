@@ -35,8 +35,8 @@
                     <td colspan="5" class="">Nenhum
                         registro encontrado.</td>
                 </tr>
-                <tr v-else v-for="generator in generators.data"
-                    class="border-b transition duration-100 ease-in-out hover:bg-neutral-200">
+                <tr v-else v-for="generator in generators.data" @click="viewItem(generator.id)"
+                    class="border-b transition duration-100 ease-in-out hover:bg-neutral-200 cursor-pointer">
                     <td scope="row" class="whitespace-nowrap px-6 py-4">
                         {{ generator.serial }}
                     </td>
@@ -49,7 +49,7 @@
                     <td class="whitespace-nowrap px-6 py-4">
                         {{ generator.hourmeter }}
                     </td>
-                    <td class="whitespace-nowrap px-6 py-4">
+                    <td @click.stop class="whitespace-nowrap px-6 py-4">
                         <Link :href="route('generators.edit', generator.id)"
                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline"> Edit </Link>
                         <button @click="confirmGeneratorDeletion(generator.id)"
@@ -86,7 +86,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import Table from '@/Components/Table.vue';
-import { Link, useForm, usePage } from '@inertiajs/vue3';
+import { Link, useForm, usePage, router } from '@inertiajs/vue3';
 import Modal from '@/Components/Modal.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
@@ -98,7 +98,7 @@ defineProps({
     generators: {
         type: Object,
     },
-    filters: String,
+    filters: Object,
 });
 
 const page = usePage();
@@ -129,6 +129,10 @@ const closeModal = () => {
 
     form.reset();
 };
+
+const viewItem = (id) => {
+    router.get(route('generators.show', id));
+}
 </script>
 
 <style lang="scss" scoped></style>
