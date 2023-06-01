@@ -1,7 +1,7 @@
 <template>
     <div class="pb-4 container w-full flex justify-end">
         <label for="table-search" class="sr-only">Search</label>
-        <div class="relative mt-1">
+        <div class="relative mt-5">
             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg class="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor"
                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -29,7 +29,7 @@ let props = defineProps({
 let search = ref(props.filters.search);
 
 watch(search, debounce(function (value) {
-    router.get('/generators', { search: value }, {
+    router.get(router.page.url, { search: value }, {
         preserveState: true,
         replace: true
     });

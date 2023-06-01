@@ -11,12 +11,25 @@ class EmployeeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $employees = Employee::all();
-
         return Inertia::render('Employees/Index', [
-            'employees' => $employees
+            'employees' => Employee::query()
+                ->when($request->input('search'), function ($query, $search) {
+                    $query->where('first_name', 'like', "%{$search}%");
+                    $query->orWhere('last_name', 'like', "%{$search}%");
+                })
+                ->paginate(10)
+                ->withQueryString()
+                ->through(fn ($register) => [
+                    'id' => $register->id,
+                    'first_name' => $register->first_name,
+                    'last_name' => $register->last_name,
+                    'birth_date' => $register->birth_date,
+                    'monthly_rate' => $register->monthly_rate,
+                    'cpf' => $register->cpf,
+                ]),
+            'filters' => $request->only(['search']),
         ]);
     }
 
@@ -25,7 +38,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Employees/Create');
     }
 
     /**
@@ -39,17 +52,24 @@ class EmployeeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Employee $employee)
+    public function show($id)
     {
-        //
+        $employee = Employee::find($id);
+        return Inertia::render('Employees/Show', [
+            'employee' => $employee
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Employee $employee)
+    public function edit($id)
     {
-        //
+        $employee = Employee::find($id);
+
+        return Inertia::render('Employees/Create', [
+            'employee' => $employee
+        ]);
     }
 
     /**

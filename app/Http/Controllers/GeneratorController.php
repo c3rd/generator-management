@@ -48,7 +48,7 @@ class GeneratorController extends Controller
 
         $generator = Generator::create($request->all());
 
-        return redirect('/generators');
+        return redirect()->route('generators.index')->with('message', 'Registro adicionado com sucesso.');
     }
 
     public function edit($id)

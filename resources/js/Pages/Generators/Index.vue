@@ -7,8 +7,13 @@
                 </Link>
             </div>
         </template>
-        <section class="flex flex-col justify-center mt-6">
-
+        <section class="flex flex-col items-center justify-center">
+            <div v-if="$page.props.flash.message" class="bg-red-500 rounded-md flex justify-between gap-5 py-2 px-10 mt-5">
+                <p>
+                    {{ $page.props.flash.message }}
+                </p>
+                <span>X</span>
+            </div>
             <SearchBar :filters="filters" />
             <Table>
                 <template #thead>
