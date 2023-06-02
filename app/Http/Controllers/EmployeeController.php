@@ -75,9 +75,19 @@ class EmployeeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Employee $employee)
+    public function update(Request $request, $id)
     {
-        //
+        $employee = Employee::find($id);
+
+        $employee->update([
+            'first_name' => $request->firstName,
+            'last_name' => $request->lastName,
+            'birth_date' => $request->birthDate,
+            'monthly_rate' => $request->monthlyRate,
+            'cpf' => $request->cpf
+        ]);
+
+        return redirect('/employees');
     }
 
     /**

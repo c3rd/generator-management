@@ -13,7 +13,7 @@
                 <form @submit.prevent="submit">
                     <div>
                         <InputLabel for="firstName" value="Nome" />
-                        <TextInput id="firstName" type="text" class="mt-1 w-full" v-model="form.firstName" required autofocus />
+                        <TextInput id="firstName" type="text" class="mt-1 w-full" v-model="form.firstName" required autofocus/>
                         <InputError class="mt-2" :message="form.errors.firstName" />
 
                     </div>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="mt-5">
                         <InputLabel for="monthlyRate" value="Salário" />
-                        <TextInput id="monthlyRate" type="number" class="mt-1 w-full" v-model="form.monthlyRate" required />
+                        <TextInput id="monthlyRate" type="text" class="mt-1 w-full" v-model="form.monthlyRate" required />
                         <InputError class="mt-2" :message="form.errors.monthlyRate" />
 
                     </div>
@@ -64,11 +64,11 @@ import GoBack from '@/Components/GoBack.vue';
 const pageProps = usePage().props;
 
 const form = useForm({
-    firstName: pageProps.employee ? pageProps.employee.first_name : '',
-    lastName: pageProps.employee ? pageProps.employee.last_name : '',
-    birthDate: pageProps.employee ? pageProps.employee.birth_date : '',
-    monthlyRate: pageProps.employee ? pageProps.employee.monthly_rate : '',
-    cpf: pageProps.employee ? pageProps.employee.cpf : '',
+    firstName: pageProps.employee ? pageProps.employee.first_name : null,
+    lastName: pageProps.employee ? pageProps.employee.last_name : null,
+    birthDate: pageProps.employee ? pageProps.employee.birth_date : null,
+    monthlyRate: pageProps.employee ? pageProps.employee.monthly_rate : null,
+    cpf: pageProps.employee ? pageProps.employee.cpf : null,
 });
 
 const submit = () => {
