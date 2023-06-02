@@ -6,6 +6,7 @@
             </div>
             <input :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" v-maska data-maska="9.99#,##" data-maska-tokens="9:[0-9]:repeated" data-maska-reversed type="text"
                 name="price" id="price"
+                placeholder="0,00"
                 class="block w-full border-gray-300 px-8 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" />
         </div>
     </div>

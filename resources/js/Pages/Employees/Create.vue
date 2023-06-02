@@ -40,7 +40,7 @@
                     </div>
                     <div class="mt-5">
                         <InputLabel for="monthly_rate" value="Salário" />
-                        <CurrencyInput :modelValue="form.monthly_rate" @update:modelValue="newValue => form.monthly_rate = newValue.replace('.', '').replace(',', '.')">
+                        <CurrencyInput :modelValue="form.monthly_rate" @update:modelValue="newValue => form.monthly_rate = newValue.replaceAll('.', '').replace(',', '.')">
 
                         </CurrencyInput>
                         <InputError class="mt-2" :message="form.errors.monthly_rate" />
