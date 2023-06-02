@@ -18,6 +18,8 @@
         "vue": "^3.2.41"
     },
     "dependencies": {
-        "lodash": "^4.17.21"
+        "@vuepic/vue-datepicker": "^5.1.2",
+        "lodash": "^4.17.21",
+        "maska": "^2.1.9"
     }
 }

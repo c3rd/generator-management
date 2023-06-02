@@ -28,6 +28,8 @@ class EmployeeController extends Controller
                     'birth_date' => $register->birth_date,
                     'monthly_rate' => $register->monthly_rate,
                     'cpf' => $register->cpf,
+                    'start_date' => $register->start_date,
+                    'end_date' => $register->end_date
                 ]),
             'filters' => $request->only(['search']),
         ]);
@@ -46,7 +48,9 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Employee::create($request->all());
+
+        return redirect()->route('employees.index')->with('message', 'Registro adicionado com sucesso.');
     }
 
     /**
@@ -80,10 +84,10 @@ class EmployeeController extends Controller
         $employee = Employee::find($id);
 
         $employee->update([
-            'first_name' => $request->firstName,
-            'last_name' => $request->lastName,
-            'birth_date' => $request->birthDate,
-            'monthly_rate' => $request->monthlyRate,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'birth_date' => $request->birth_date,
+            'monthly_rate' => $request->monthly_rate,
             'cpf' => $request->cpf
         ]);
 
