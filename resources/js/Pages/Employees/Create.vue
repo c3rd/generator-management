@@ -27,7 +27,7 @@
                     <div class="mt-5">
                         <InputLabel for="birth_date" value="Data de Nascimento" />
                         <VueDatePicker placeholder="Selecione a data de nascimento" close-on-scroll
-                            v-model="form.birth_date" auto-apply :enable-time-picker="false" model-type="yyyy-MM-dd" />
+                            v-model="form.birth_date" auto-apply :enable-time-picker="false" format="dd/MM/yyyy" model-type="yyyy-MM-dd"/>
                         <InputError class="mt-2" :message="form.errors.birth_date" />
 
                     </div>
@@ -49,13 +49,13 @@
                         <div class="mt-5 w-full">
                             <InputLabel for="start_date" value="Data Início" />
                             <VueDatePicker placeholder="Selecione a data de início" close-on-scroll
-                                v-model="form.start_date" auto-apply :enable-time-picker="false" model-type="yyyy-MM-dd" />
+                                v-model="form.start_date" auto-apply :enable-time-picker="false" model-type="yyyy-MM-dd" format="dd/MM/yyyy" />
                             <InputError class="mt-2" :message="form.errors.start_date" />
                         </div>
                         <div class="mt-5 w-full">
                             <InputLabel for="end_date" value="Data Final" />
                             <VueDatePicker placeholder="Selecione a data de término" close-on-scroll v-model="form.end_date"
-                                auto-apply :enable-time-picker="false" model-type="yyyy-MM-dd" />
+                                auto-apply :enable-time-picker="false" model-type="yyyy-MM-dd" format="dd/MM/yyyy" />
                             <InputError class="mt-2" :message="form.errors.end_date" />
                         </div>
                     </div>

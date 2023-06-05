@@ -25,11 +25,12 @@ class EmployeeController extends Controller
                     'id' => $register->id,
                     'first_name' => $register->first_name,
                     'last_name' => $register->last_name,
-                    'birth_date' => $register->birth_date,
+                    'birth_date' => $register->toArray()['birth_date'],
                     'monthly_rate' => $register->monthly_rate,
                     'cpf' => $register->cpf,
-                    'start_date' => $register->start_date,
-                    'end_date' => $register->end_date
+                    'start_date' => $register->toArray()['start_date'],
+                    'end_date' => $register->toArray()['end_date'],
+                    'full_name' => $register->full_name,
                 ]),
             'filters' => $request->only(['search']),
         ]);
@@ -69,10 +70,10 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        $employee = Employee::find($id);
+        $employee = Employee::find($id, ['id', 'first_name', 'last_name', 'birth_date', 'monthly_rate', 'start_date', 'end_date', 'cpf'])->getRawOriginal();
 
         return Inertia::render('Employees/Create', [
-            'employee' => $employee
+            'employee' => $employee,
         ]);
     }
 
@@ -88,7 +89,10 @@ class EmployeeController extends Controller
             'last_name' => $request->last_name,
             'birth_date' => $request->birth_date,
             'monthly_rate' => $request->monthly_rate,
-            'cpf' => $request->cpf
+            'cpf' => $request->cpf,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+
         ]);
 
         return redirect('/employees');
