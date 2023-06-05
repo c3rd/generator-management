@@ -41,6 +41,14 @@ class Employee extends Model
         );
     }
 
+    protected function cpf(): Attribute
+    {
+        return Attribute::make(
+            get: fn (mixed $value) => preg_replace('/(\d{3})(\d{3})(\d{3})(\d{2})/', '$1.$2.$3-$4', $value),
+            set: fn (mixed $value) => preg_replace('/\D+/', '', $value)
+        );
+    }
+
     private function formatMoney($value) {
 
         $fmt = new NumberFormatter('pt-BR', NumberFormatter::CURRENCY);

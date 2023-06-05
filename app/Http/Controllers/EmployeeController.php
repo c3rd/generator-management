@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EmployeeRequest;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -47,8 +48,9 @@ class EmployeeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EmployeeRequest $request)
     {
+        
         Employee::create($request->all());
 
         return redirect()->route('employees.index')->with('message', 'Registro adicionado com sucesso.');
@@ -80,7 +82,7 @@ class EmployeeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(EmployeeRequest $request, $id)
     {
         $employee = Employee::find($id);
 
@@ -92,7 +94,6 @@ class EmployeeController extends Controller
             'cpf' => $request->cpf,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
-
         ]);
 
         return redirect('/employees');

@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->date('birth_date');
-            $table->date('start_date');
+            $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
-            $table->float('monthly_rate');
+            $table->double('monthly_rate', 16, 2);
             $table->string('cpf')->nullable();
         });
     }
