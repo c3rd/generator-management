@@ -22,6 +22,9 @@
                         <NavLink :href="route('employees.index')" :active="route().current('employees.index')">
                             Funcionários
                         </NavLink>
+                        <NavLink :href="route('customers.index')" :active="route().current('customers.index')">
+                            Clientes
+                        </NavLink>
                     </div>
                 </div>
 
@@ -87,6 +90,9 @@
                 </ResponsiveNavLink>
                 <ResponsiveNavLink :href="route('employees.index')" :active="route().current('employees.index')">
                     Funcionários
+                </ResponsiveNavLink>
+                <ResponsiveNavLink :href="route('customers.index')" :active="route().current('customers.index')">
+                    Clientes
                 </ResponsiveNavLink>
             </div>
 

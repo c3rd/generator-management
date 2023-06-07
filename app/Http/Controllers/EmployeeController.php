@@ -50,7 +50,7 @@ class EmployeeController extends Controller
      */
     public function store(EmployeeRequest $request)
     {
-        
+
         Employee::create($request->all());
 
         return redirect()->route('employees.index')->with('message', 'Registro adicionado com sucesso.');
@@ -104,6 +104,6 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+        $employee->delete();
     }
 }
