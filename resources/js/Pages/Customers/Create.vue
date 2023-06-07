@@ -11,48 +11,58 @@
         <div class="container py-12">
             <div class="bg-white rounded-lg p-10">
                 <form @submit.prevent="submit">
-                    <div>
-                        <InputLabel for="first_name" value="Nome" />
-                        <TextInput id="first_name" type="text" class="mt-1 w-full" v-model="form.first_name" required
-                            autofocus />
-                        <InputError class="mt-2" :message="form.errors.first_name" />
+                    <div class="mt-5 flex items-center gap-5">
+                        <div class="w-full">
+                            <InputLabel for="first_name" value="Nome" />
+                            <TextInput id="first_name" type="text" class="mt-1 w-full" v-model="form.first_name" required
+                                autofocus />
+                            <InputError class="mt-2" :message="form.errors.first_name" />
 
+                        </div>
+                        <div class="w-full">
+                            <InputLabel for="last_name" value="Sobrenome" />
+                            <TextInput id="last_name" type="text" class="mt-1 w-full" v-model="form.last_name" required />
+                            <InputError class="mt-2" :message="form.errors.last_name" />
+
+                        </div>
+                    </div>
+                    <div class="mt-5 flex items-center justify-between gap-5">
+                        <div class="w-full">
+                            <InputLabel for="identification_number" value="Número de Identificação" />
+                            <TextInput id="identification_number" v-maska data-maska="['###.###.###-##', '##.###.###-#']"
+                                type="text" class="mt-1 w-full" v-model="form.identification_number" required />
+                            <InputError class="mt-2" :message="form.errors.identification_number" />
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <InputLabel for="rg" value="RG" />
+                            <input type="radio" name="identification_type" id="rg" value="rg">
+                            <InputLabel for="cpf" value="CPF" />
+                            <input type="radio" name="identification_type" id="cpf" value="cpf">
+                        </div>
                     </div>
                     <div class="mt-5">
-                        <InputLabel for="last_name" value="Sobrenome" />
-                        <TextInput id="last_name" type="text" class="mt-1 w-full" v-model="form.last_name" required />
-                        <InputError class="mt-2" :message="form.errors.last_name" />
-
-                    </div>
-                    <div class="mt-5">
-                        <InputLabel for="birth_date" value="Número de Identificação" />
-                        <TextInput id="identification_number" v-maska data-maska="['###.###.###-##', '##.###.###-#']" type="text" class="mt-1 w-full" v-model="form.identification_number" required/>
-                        <InputError class="mt-2" :message="form.errors.identification_number" />
-
-                        <InputLabel for="rg" value="RG" />
-                        <input type="radio" name="identification_number" id="rg" value="rg">
-                        <InputLabel for="cpf" value="CPF" />
-                        <input type="radio" name="identification_number" id="cpf" value="cpf">
-                    </div>
-                    <div class="mt-5">
-                        <InputLabel for="email" value="email" />
-                        <TextInput  id="email" type="email" class="mt-1 w-full"
-                            v-model="form.email" required />
+                        <InputLabel for="email" value="Email" />
+                        <TextInput id="email" type="email" class="mt-1 w-full" v-model="form.email" required />
                         <InputError class="mt-2" :message="form.errors.email" />
 
                     </div>
                     <div class="mt-5">
                         <InputLabel for="phone_number" value="Telefone" />
-                        <TextInput  id="phone_number" type="text" class="mt-1 w-full"
-                            v-model="form.phone_number" required />
+                        <TextInput id="phone_number" v-maska data-maska="(##) # ####-####" type="text"
+                            class="mt-1 w-full" v-model="form.phone_number" required />
                         <InputError class="mt-2" :message="form.errors.phone_number" />
 
                     </div>
                     <div class="mt-5">
                         <InputLabel for="cep" value="Cep" />
-                        <TextInput id="cep" type="text" class="mt-1 w-full"
-                            v-model="form.cep" required />
+                        <TextInput id="cep" v-maska data-maska="#####-###" type="text" class="mt-1 w-full" v-model="form.cep" required />
                         <InputError class="mt-2" :message="form.errors.cep" />
+                    </div>
+                    <h2>Endereço</h2>
+                    <div class="flex justify-center items-center gap-2">
+                        <TextInput id="address" type="text" class="mt-1 w-full" v-model="form.address" placeholder="Rua, Avenida..." />
+                        <TextInput id="address_number" type="text" class="mt-1 w-1/3" v-model="form.address_number" placeholder="Nº"/>
                     </div>
                     <div class="flex justify-center">
                         <PrimaryButton class="mt-10 ml-4" :class="{ 'opacity-25': form.processing }"
