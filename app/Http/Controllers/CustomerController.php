@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CustomerRequest;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -36,5 +37,14 @@ class CustomerController extends Controller
     public function create()
     {
         return Inertia::render('Customers/Create');
+    }
+
+    public function store(CustomerRequest $request)
+    {
+
+        Customer::create($request->all());
+
+        return redirect()->route('customers.index')->with('message', 'Registro adicionado com sucesso.');
+
     }
 }

@@ -13,12 +13,12 @@
                 <form @submit.prevent="submit">
                     <div class="mt-5 flex items-center justify-between gap-5">
                         <div class="w-1/3">
-                            <InputVue id="first_name" label-text="Nome" v-model="form.first_name" />
+                            <InputVue id="first_name" label-text="Nome*" v-model="form.first_name" />
                             <InputError class="mt-2" :message="form.errors.first_name" />
 
                         </div>
                         <div class="w-2/3">
-                            <InputVue id="last_name" label-text="Sobrenome" v-model="form.last_name" />
+                            <InputVue id="last_name" label-text="Sobrenome*" v-model="form.last_name" />
                             <InputError class="mt-2" :message="form.errors.last_name" />
 
                         </div>
@@ -26,8 +26,8 @@
                     <div class="mt-5 flex items-center justify-between gap-5">
                         <div class="w-2/3">
                             <InputVue id="identification_number" data-maska="['###.###.###-##', '##.###.###-#']"
-                                label-text="Identidade" v-model="form.identification_number" />
-                            <InputError class="mt-2" :message="form.errors.identification_number" />
+                                label-text="Identidade*" v-model="form.identification_number" />
+                            <InputError class="mt-2" :message="form.errors.identification_type ? form.errors.identification_type : form.errors.identification_number" />
                         </div>
 
                         <div class="flex items-center justify-center gap-2 w-1/3">
@@ -35,12 +35,12 @@
                             <input type="radio" name="identification_type" id="rg" value="rg"
                                 v-model="form.identification_type">
                             <InputLabel for="cpf" value="CPF" />
-                            <input type="radio" name="identification_type" id="cpf" value="cpf">
+                            <input type="radio" name="identification_type" id="cpf" value="cpf" v-model="form.identification_type">
                         </div>
                     </div>
                     <div class="flex justify-between gap-5 mt-5">
                         <div class="w-full">
-                            <InputVue id="email" label-text="Email" v-model="form.email" />
+                            <InputVue id="email" label-text="Email*" v-model="form.email" />
                             <InputError class="mt-2" :message="form.errors.email" />
 
                         </div>
