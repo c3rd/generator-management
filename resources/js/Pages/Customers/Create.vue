@@ -25,7 +25,7 @@
                     </div>
                     <div class="mt-5 flex items-center justify-between gap-5">
                         <div class="w-2/3">
-                            <InputVue id="identification_number" data-maska="['###.###.###-##', '##.###.###-#']"
+                            <InputVue id="identification_number" :data-maska="form.identification_type === 'cpf' ? '###.###.###-##' : '##.###.###-#'"
                                 label-text="Identidade*" v-model="form.identification_number" />
                             <InputError class="mt-2" :message="form.errors.identification_type ? form.errors.identification_type : form.errors.identification_number" />
                         </div>
@@ -33,7 +33,7 @@
                         <div class="flex items-center justify-center gap-2 w-1/3">
                             <InputLabel for="rg" value="RG" />
                             <input type="radio" name="identification_type" id="rg" value="rg"
-                                v-model="form.identification_type">
+                                v-model="form.identification_type" checked>
                             <InputLabel for="cpf" value="CPF" />
                             <input type="radio" name="identification_type" id="cpf" value="cpf" v-model="form.identification_type">
                         </div>
@@ -79,7 +79,6 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, useForm, usePage } from '@inertiajs/vue3';
 import InputLabel from '@/Components/InputLabel.vue';
-import TextInput from '@/Components/TextInput.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import GoBack from '@/Components/GoBack.vue';
