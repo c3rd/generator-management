@@ -13,71 +13,56 @@
                 <form @submit.prevent="submit">
                     <div class="mt-5 flex items-center justify-between gap-5">
                         <div class="w-1/3">
-                            <InputLabel for="first_name" value="Nome" />
-                            <TextInput id="first_name" class="w-full" type="text" v-model="form.first_name" required
-                                autofocus />
+                            <InputVue id="first_name" label-text="Nome" v-model="form.first_name" />
                             <InputError class="mt-2" :message="form.errors.first_name" />
 
                         </div>
                         <div class="w-2/3">
-                            <InputLabel for="last_name" value="Sobrenome" />
-                            <TextInput id="last_name" class="w-full" type="text" v-model="form.last_name" required />
+                            <InputVue id="last_name" label-text="Sobrenome" v-model="form.last_name" />
                             <InputError class="mt-2" :message="form.errors.last_name" />
 
                         </div>
                     </div>
                     <div class="mt-5 flex items-center justify-between gap-5">
                         <div class="w-2/3">
-                            <InputLabel for="identification_number" value="Número de Identificação" />
-                            <TextInput id="identification_number" v-maska data-maska="['###.###.###-##', '##.###.###-#']"
-                                type="text" class="mt-1 w-full" v-model="form.identification_number" required />
+                            <InputVue id="identification_number" data-maska="['###.###.###-##', '##.###.###-#']"
+                                label-text="Identidade" v-model="form.identification_number" />
                             <InputError class="mt-2" :message="form.errors.identification_number" />
                         </div>
 
                         <div class="flex items-center justify-center gap-2 w-1/3">
                             <InputLabel for="rg" value="RG" />
-                            <input type="radio" name="identification_type" id="rg" value="rg">
+                            <input type="radio" name="identification_type" id="rg" value="rg"
+                                v-model="form.identification_type">
                             <InputLabel for="cpf" value="CPF" />
                             <input type="radio" name="identification_type" id="cpf" value="cpf">
                         </div>
                     </div>
                     <div class="flex justify-between gap-5 mt-5">
                         <div class="w-full">
-                            <InputLabel for="email" value="Email" />
-                            <TextInput id="email" type="email" class="mt-1 w-full" v-model="form.email" required />
+                            <InputVue id="email" label-text="Email" v-model="form.email" />
                             <InputError class="mt-2" :message="form.errors.email" />
 
                         </div>
                         <div class="w-full">
-                            <InputLabel for="phone_number" value="Telefone" />
-                            <TextInput id="phone_number" v-maska data-maska="(##) # ####-####" type="text"
-                                class="mt-1 w-full" v-model="form.phone_number" required />
+                            <InputVue id="phone_number" data-maska="(##) # ####-####" label-text="Telefone"
+                                v-model="form.phone_number" />
                             <InputError class="mt-2" :message="form.errors.phone_number" />
 
                         </div>
                     </div>
                     <div class="mt-5">
-                        <InputLabel for="cep" value="Cep" />
-                        <TextInput id="cep" v-maska data-maska="#####-###" type="text" class="mt-1 w-full" v-model="cep"
-                            required />
+                        <InputVue id="cep" data-maska="#####-###" label-text="CEP" v-model="cep" />
                         <InputError class="mt-2" :message="form.errors.cep" />
                     </div>
-                    <h2 class="mt-5">Endereço</h2>
-                    <div class="flex justify-center items-center gap-2">
-                        <TextInput id="address" type="text" class="mt-1 w-full" v-model="form.address"
-                            placeholder="Rua, Avenida..." />
-                        <TextInput id="address_number" type="text" class="mt-1 w-1/3" v-model="form.address_number"
-                            placeholder="Nº" />
+                    <div class="flex justify-center items-center gap-2 mt-5">
+                        <InputVue id="address" class="w-4/5" v-model="form.address" label-text="Endereço" />
+                        <InputVue id="address_number" class="w-1/5" v-model="form.address_number" label-text="Nº" />
                     </div>
                     <div class="flex justify-center items-center gap-2 mt-5">
-                        <TextInput id="address_info" type="text" class="mt-1 w-full" v-model="form.address_info"
-                            placeholder="Bairro" />
-                        
-                        <TextInput id="city" type="text" class="mt-1 w-1/3" v-model="form.city"
-                            placeholder="Cidade" />
-                        
-                        <TextInput id="uf" type="text" class="mt-1 w-1/3" v-model="form.uf"
-                            placeholder="Uf" />
+                        <InputVue id="address_info" class="w-full" v-model="form.address_info" label-text="Bairro" />
+                        <InputVue id="city" class="w-1/3" v-model="form.city" label-text="Cidade" />
+                        <InputVue id="uf" class="w-1/3" v-model="form.uf" label-text="Estado" />
                     </div>
                     <div class="flex justify-center">
                         <PrimaryButton class="mt-10 ml-4" :class="{ 'opacity-25': form.processing }"
@@ -99,13 +84,12 @@ import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import GoBack from '@/Components/GoBack.vue';
 import '@vuepic/vue-datepicker/dist/main.css';
-import { vMaska } from "maska";
 import debounce from "lodash/debounce";
 import { watch, ref } from 'vue';
 import axios from 'axios';
+import InputVue from '@/Components/Input.vue';
 
 const pageProps = usePage().props;
-
 
 const form = useForm({
     first_name: pageProps.customer ? pageProps.customer.first_name : '',
@@ -156,8 +140,6 @@ watch(cep, debounce(async function (value) {
             form.errors.cep = "Houve um erro na localização pelo cep.";
         }
     }
-
-
 }, 300));
 
 </script>
