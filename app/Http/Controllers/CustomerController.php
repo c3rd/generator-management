@@ -12,8 +12,6 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
 
-        $customers = Customer::all();
-
         return Inertia::render('Customers/Index', [
             'customers' => Customer::query()
                 ->when($request->input('search'), function ($query, $search) {
@@ -46,5 +44,24 @@ class CustomerController extends Controller
 
         return redirect()->route('customers.index')->with('message', 'Registro adicionado com sucesso.');
 
+    }
+
+    public function edit(Customer $customer)
+    {
+        return Inertia::render('Customers/Create', [
+            'customer' => $customer,
+        ]);
+    }
+
+    public function update(CustomerRequest $request, Customer $customer)
+    {
+        $customer->update($request->all());
+
+        return redirect()->route('customers.index')->with('message', 'Registro atualizado com sucesso');
+    }
+
+    public function destroy(Customer $customer)
+    {
+        $customer->delete();
     }
 }

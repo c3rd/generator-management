@@ -22,10 +22,7 @@ class CustomerRequest extends FormRequest
             'last_name' => ['alpha:ascii', 'max:255', 'required'],
             'identification_number' => ['min:' . $minIdentification, 'required'],
             'identification_type' => ['required'],
-            'email' => ['email:rfc,dns'],
-            'birth_date' => ['date_format:Y-m-d', 'required'],
-            'monthly_rate' => ['decimal:2', 'required'],
-            'cpf' => ['string', 'min:14', 'max:14']
+            'email' => ['email:rfc,dns']
         ];
 
         return $rules;

@@ -63,33 +63,19 @@
                     <td @click.stop class="whitespace-nowrap px-6 py-4">
                         <Link :href="route('customers.edit', customer.id)"
                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline"> Edit </Link>
-                        <button @click="confirmCustomerDeletion(customer.id)"
+                        <button @click="openModalConfirmation(customer.id)"
                             class="font-medium text-red-500 dark:text-red-500 hover:underline"> Delete </button>
                     </td>
                 </tr>
             </Table>
             <Pagination :links="customers.links"></Pagination>
-            <Modal :show="confirmingCustomerDeletion" @close="closeModal">
-                <div class="p-6">
-                    <h2 class="text-lg font-medium text-gray-900">
-                        Are you sure you want to delete your account?
-                    </h2>
-
-                    <p class="mt-1 text-sm text-gray-600">
-                        Once your account is deleted, all of its resources and data will be permanently deleted. Please
-                        enter your password to confirm you would like to permanently delete your account.
-                    </p>
-
-                    <div class="mt-6 flex justify-end">
-                        <SecondaryButton @click="closeModal"> Cancelar </SecondaryButton>
-
-                        <DangerButton class="ml-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
-                            @click="deleteCustomer">
-                            Excluir
-                        </DangerButton>
-                    </div>
-                </div>
-            </Modal>
+            <DeleteConfirmation @confirmDeletion="deleteRegister" @closeModal="closeModal" :form="form"
+                :registerId="registerId" :isModalOpen="isModalOpen">
+                <template #title>
+                    Deseja remover o registro?
+                </template>
+                    Ao clicar em excluir você não poderá voltar atrás.
+            </DeleteConfirmation>
         </section>
     </AuthenticatedLayout>
 </template>
@@ -97,13 +83,11 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import Table from '@/Components/Table.vue';
-import { Link, useForm, usePage, router } from '@inertiajs/vue3';
-import Modal from '@/Components/Modal.vue';
-import DangerButton from '@/Components/DangerButton.vue';
-import SecondaryButton from '@/Components/SecondaryButton.vue';
+import { Link, useForm, router } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import Pagination from '@/Components/Pagination.vue';
 import SearchBar from '@/Components/SearchBar.vue';
+import DeleteConfirmation from '@/Components/DeleteConfirmation.vue';
 
 defineProps({
     customers: {
@@ -112,18 +96,18 @@ defineProps({
     filters: Object,
 });
 
-const confirmingCustomerDeletion = ref(false);
-let registerId = ref(null);
-
 const form = useForm({});
 
-const confirmCustomerDeletion = (id) => {
-    confirmingCustomerDeletion.value = true;
-    registerId = id;
-};
+const registerId = ref(null);
+const isModalOpen = ref(false);
 
-const deleteCustomer = () => {
-    form.delete(route('customers.destroy', registerId), {
+const openModalConfirmation = (id) => {
+    registerId.value = id;
+    isModalOpen.value = true;
+}
+
+const deleteRegister = () => {
+    form.delete(route('customers.destroy', registerId.value), {
         preserveScroll: true,
         onSuccess: () => closeModal(),
         onFinish: () => form.reset(),
@@ -131,11 +115,10 @@ const deleteCustomer = () => {
 };
 
 const closeModal = () => {
-    confirmingcustomerDeletion.value = false;
-    registerId.value = false;
-
+    registerId.value = null;
+    isModalOpen.value = false;
     form.reset();
-};
+}
 
 const viewItem = (id) => {
     router.get(route('customers.show', id));

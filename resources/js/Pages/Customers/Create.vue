@@ -25,9 +25,11 @@
                     </div>
                     <div class="mt-5 flex items-center justify-between gap-5">
                         <div class="w-2/3">
-                            <InputVue id="identification_number" :data-maska="form.identification_type === 'cpf' ? '###.###.###-##' : '##.###.###-#'"
+                            <InputVue id="identification_number"
+                                :data-maska="form.identification_type === 'cpf' ? '###.###.###-##' : '##.###.###-#'"
                                 label-text="Identidade*" v-model="form.identification_number" />
-                            <InputError class="mt-2" :message="form.errors.identification_type ? form.errors.identification_type : form.errors.identification_number" />
+                            <InputError class="mt-2"
+                                :message="form.errors.identification_type ? form.errors.identification_type : form.errors.identification_number" />
                         </div>
 
                         <div class="flex items-center justify-center gap-2 w-1/3">
@@ -35,7 +37,8 @@
                             <input type="radio" name="identification_type" id="rg" value="rg"
                                 v-model="form.identification_type" checked>
                             <InputLabel for="cpf" value="CPF" />
-                            <input type="radio" name="identification_type" id="cpf" value="cpf" v-model="form.identification_type">
+                            <input type="radio" name="identification_type" id="cpf" value="cpf"
+                                v-model="form.identification_type">
                         </div>
                     </div>
                     <div class="flex justify-between gap-5 mt-5">
@@ -94,7 +97,7 @@ const form = useForm({
     first_name: pageProps.customer ? pageProps.customer.first_name : '',
     last_name: pageProps.customer ? pageProps.customer.last_name : '',
     identification_number: pageProps.customer ? pageProps.customer.identification_number : '',
-    identification_type: pageProps.customer ? pageProps.customer.identification_type : '',
+    identification_type: pageProps.customer ? pageProps.customer.identification_type : 'rg',
     email: pageProps.customer ? pageProps.customer.email : '',
     phone_number: pageProps.customer ? pageProps.customer.phone_number : '',
     cep: pageProps.customer ? pageProps.customer.cep : '',
@@ -120,9 +123,9 @@ watch(cep, debounce(async function (value) {
     if (value.length > 0 && value.length < 9) {
         form.errors.cep = "Cep Inválido.";
         return;
-    } else {
-        form.errors.cep = "";
     }
+
+    form.errors.cep = "";
 
     if (value.length === 9) {
         try {
