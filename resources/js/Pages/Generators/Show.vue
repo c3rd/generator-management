@@ -20,6 +20,7 @@
                     </ul>
                 </div>
             </div>
+            <h2 class="mt-5 text-2xl">Últimos Serviços</h2>
         </div>
     </AuthenticatedLayout>
 </template>

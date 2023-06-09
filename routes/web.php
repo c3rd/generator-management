@@ -4,6 +4,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\GeneratorController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('generators', GeneratorController::class);
     Route::resource('employees', EmployeeController::class);
     Route::resource('customers', CustomerController::class);
+    Route::resource('generators.services', ServiceController::class);
 });
 
 require __DIR__.'/auth.php';

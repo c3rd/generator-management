@@ -16,9 +16,11 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name');
             $table->float('hourmeter');
+            $table->date('service_date');
+            $table->date('next_service_date')->nullable();
+            $table->float('next_service_hourmeter')->nullable();
             $table->foreignId('employee_id');
             $table->foreignId('generator_id');
-
         });
     }
 
