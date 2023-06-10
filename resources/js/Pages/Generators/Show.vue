@@ -21,13 +21,16 @@
                 </div>
             </div>
             <h2 class="mt-5 text-2xl">Últimos Serviços</h2>
+            <Link :href="route('generators.services.create', generator.id)" class="bg-black py-2 px-4 text-white rounded-lg">Adicionar Serviço
+            </Link>
         </div>
     </AuthenticatedLayout>
 </template>
 
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import GoBack from '@/Components/GoBack.vue'
+import GoBack from '@/Components/GoBack.vue';
+import { Link } from '@inertiajs/vue3';
 
 defineProps({
     generator: Array,

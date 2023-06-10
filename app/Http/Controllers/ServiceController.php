@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -19,9 +20,15 @@ class ServiceController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        return Inertia::render('Generators/Services/Create');
+        $employees = Employee::all();
+        $generatorId = $request->route('generator');
+
+        return Inertia::render('Generators/Services/Create', [
+            'employees' => $employees,
+            'generatorId' => $generatorId,
+        ]);
     }
 
     /**
