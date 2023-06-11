@@ -60,8 +60,8 @@
                                 <InputError class="mt-2" :message="form.errors.next_service" />
                             </div>
                             <div v-else>
-                                <InputVue id="next_service_hourmeter" label-text="Horímetro"
-                                    v-model="form.next_service_hourmeter" />
+                                <InputVue id="next_service_hourmeter" label-text="Horímetro" v-model="form.next_service_hourmeter" v-maska
+                                data-maska="9.99#,##" />
                                 <InputError class="mt-2" :message="form.errors.next_service_hourmeter" />
                             </div>
                         </div>
@@ -108,9 +108,9 @@ const form = useForm({
 
 const submit = () => {
     if (pageProps.service) {
-        form.put(route('services.update', pageProps.service.id));
+        form.put(route('generators.services.update', pageProps.service.id));
     } else {
-        form.post(route('services.store'));
+        form.post(route('generators.services.store', form.generator_id));
     }
 };
 

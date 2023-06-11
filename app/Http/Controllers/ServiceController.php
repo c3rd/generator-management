@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ServiceRequest;
 use App\Models\Employee;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -34,9 +35,14 @@ class ServiceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ServiceRequest $request)
     {
-        //
+        
+        Service::create($request->all());
+        $generatorId = $request->route('generator');
+
+        return redirect()->route('generators.show', $generatorId)->with('message', 'Registro criado com sucesso');
+
     }
 
     /**

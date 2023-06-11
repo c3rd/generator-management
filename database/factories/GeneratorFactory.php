@@ -20,9 +20,9 @@ class GeneratorFactory extends Factory
     {
         return [
             'serial' => fake()->numberBetween(10000,99999),
-            'brand' => fake()->domainName(),
-            'model' => fake()->domainName(),
-            'hourmeter' => Str::random(10),
+            'brand' => fake()->word(),
+            'model' => fake()->word(),
+            'hourmeter' => fake()->numberBetween(1, 1000),
         ];
     }
 }

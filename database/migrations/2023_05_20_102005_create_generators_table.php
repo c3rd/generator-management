@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('serial')->nullable();
             $table->string('brand')->nullable();
             $table->string('model')->nullable();
-            $table->string('hourmeter')->nullable();
+            $table->integer('capacity')->nullable();
+            $table->float('hourmeter')->nullable();
         });
     }
 
