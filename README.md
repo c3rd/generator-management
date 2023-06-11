@@ -2,9 +2,9 @@ This is a personal project meant to demonstrate my skills with Laravel + Inertia
 
 ## How to Install
 
-Clone the project.
-Setup database (MySql)
-Setup .env file. Same as the .env.example
-Run npm install
-Run composer install
-Run php artisan serve
+- Clone the project.
+- Setup database (MySql)
+- Setup .env file. Same as the .env.example
+- Run npm install
+- Run composer install
+- Run php artisan serve
