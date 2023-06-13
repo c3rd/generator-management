@@ -31,4 +31,30 @@ class Customer extends Model
             get: fn () => "{$this->first_name} {$this->last_name}",
         );
     }
+
+    protected function identificationNumber(): Attribute
+    {
+        return Attribute::make(
+            set: fn (mixed $value) => $this->__removeNonNumericChars($value)
+        );
+    }
+
+    protected function phoneNumber(): Attribute
+    {
+        return Attribute::make(
+            set: fn (mixed $value) => $this->__removeNonNumericChars($value)
+        );
+    }
+
+    protected function cep(): Attribute
+    {
+        return Attribute::make(
+            set: fn (mixed $value) => $this->__removeNonNumericChars($value)
+        );
+    }
+
+    private function __removeNonNumericChars($value)
+    {
+        return preg_replace('/\D+/', '', $value);
+    }
 }
