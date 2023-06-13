@@ -60,16 +60,11 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, useForm, usePage } from '@inertiajs/vue3';
-import InputLabel from '@/Components/InputLabel.vue';
 import InputVue from '@/Components/Input.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import GoBack from '@/Components/GoBack.vue';
-import VueDatePicker from '@vuepic/vue-datepicker';
-import '@vuepic/vue-datepicker/dist/main.css';
 import { vMaska } from "maska"
-import Datepicker from '@/Components/Datepicker.vue';
-import CurrencyInput from '@/Components/CurrencyInput.vue';
 
 const pageProps = usePage().props;
 
