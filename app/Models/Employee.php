@@ -39,7 +39,8 @@ class Employee extends Model
     protected function monthlyRate(): Attribute
     {
         return Attribute::make(
-            get: fn (mixed $value) => $this->formatMoney($value)
+            get: fn (mixed $value) => $this->formatMoney($value),
+            set: fn (mixed $value) => $this->formatToFloat($value),
         );
     }
 
@@ -57,6 +58,14 @@ class Employee extends Model
 
         return $fmt->formatCurrency($value, "BRL");
 
+    }
+
+    private function formatToFloat($value, $decimals = 2) 
+    {
+        $cleanValue = preg_replace('/\D/', '', $value);
+        $newValue = substr_replace($cleanValue, '.', -$decimals, 0);
+
+        return $newValue;
     }
 
 }

@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         User::factory(1)->create();
         Generator::factory(10)->create();
         Employee::factory(10)->create();
-        Customer::factory(10)->create();
-        Service::factory(500)->create();
+        //Customer::factory(10)->create();
+        //Service::factory(500)->create();
     }
 }

@@ -20,8 +20,8 @@ class EmployeeFactory extends Factory
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'birth_date' => fake()->date('Y-m-d', '1990-07-01'),
-            'monthly_rate' => fake()->randomNumber(4),
-            'cpf' => fake()->randomNumber(11),
+            'monthly_rate' => fake()->randomNumber(6),
+            'cpf' => fake()->randomNumber(9) . fake()->randomNumber(2),
         ];
     }
 }

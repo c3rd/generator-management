@@ -21,7 +21,7 @@ class EmployeeRequest extends FormRequest
             'start_date' => ['date_format:Y-m-d'],
             'end_date' => ['date_format:Y-m-d'],
             'birth_date' => ['date_format:Y-m-d', 'required'],
-            'monthly_rate' => ['decimal:2', 'required'],
+            'monthly_rate' => ['required'],
             'cpf' => ['string', 'min:14', 'max:14']
         ];
     }

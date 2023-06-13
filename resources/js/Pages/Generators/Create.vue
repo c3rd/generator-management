@@ -12,36 +12,20 @@
             <div class="bg-white rounded-lg p-10">
                 <form @submit.prevent="submit">
                     <div>
-                        <InputLabel for="serial" value="Serial" />
-                        <TextInput id="serial" type="text" class="mt-1 w-full" v-model="form.serial" required autofocus>
-
-                        </TextInput>
+                        <InputVue id="serial" label-text="Número de Série*" v-model="form.serial" autofocus />
                         <InputError class="mt-2" :message="form.errors.serial" />
-
                     </div>
                     <div class="mt-5">
-                        <InputLabel for="brand" value="Marca" />
-                        <TextInput id="brand" type="text" class="mt-1 w-full" v-model="form.brand" required>
-
-                        </TextInput>
+                        <InputVue id="brand" label-text="Marca*" v-model="form.brand" />
                         <InputError class="mt-2" :message="form.errors.brand" />
-
                     </div>
                     <div class="mt-5">
-                        <InputLabel for="model" value="Modelo" />
-                        <TextInput id="model" type="text" class="mt-1 w-full" v-model="form.model" required>
-
-                        </TextInput>
+                        <InputVue id="model" label-text="Modelo*" v-model="form.model" />
                         <InputError class="mt-2" :message="form.errors.model" />
-
                     </div>
                     <div class="mt-5">
-                        <InputLabel for="hourmeter" value="Horímetro" />
-                        <TextInput id="hourmeter" type="text" class="mt-1 w-full" v-model="form.hourmeter" required>
-
-                        </TextInput>
+                        <InputVue id="hourmeter" label-text="Horímetro*" v-model="form.hourmeter" />
                         <InputError class="mt-2" :message="form.errors.hourmeter" />
-
                     </div>
                     <div class="flex justify-center">
                         <PrimaryButton class="mt-5 ml-4" :class="{ 'opacity-25': form.processing }"
@@ -57,8 +41,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, useForm, Link, usePage } from '@inertiajs/vue3';
-import InputLabel from '@/Components/InputLabel.vue';
-import TextInput from '@/Components/TextInput.vue';
+import InputVue from '@/Components/Input.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import GoBack from '@/Components/GoBack.vue';
