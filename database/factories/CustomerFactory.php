@@ -19,8 +19,8 @@ class CustomerFactory extends Factory
         return [
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
-            'identification_number' => fake()->randomNumber(11),
-            'identification_type' => 'cpf',
+            'identification_number' => fake()->randomNumber(9),
+            'identification_type' => 'rg',
             'email' => fake()->safeEmail(),
             'phone_number' => fake()->phoneNumber(),
         ];

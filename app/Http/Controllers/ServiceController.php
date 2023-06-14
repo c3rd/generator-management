@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ServiceRequest;
 use App\Models\Employee;
+use App\Models\Generator;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -56,9 +57,9 @@ class ServiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Service $service)
+    public function edit(Generator $generator, Service $service)
     {
-        //
+        dd($generator);
     }
 
     /**

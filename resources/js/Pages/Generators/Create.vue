@@ -24,7 +24,8 @@
                         <InputError class="mt-2" :message="form.errors.model" />
                     </div>
                     <div class="mt-5">
-                        <InputVue id="hourmeter" label-text="Horímetro*" v-model="form.hourmeter" />
+                        <InputVue v-maska data-maska="9.99#,##" data-maska-tokens="9:[0-9]:repeated" data-maska-reversed
+                            id="hourmeter" label-text="Horímetro*" v-model="form.hourmeter" />
                         <InputError class="mt-2" :message="form.errors.hourmeter" />
                     </div>
                     <div class="flex justify-center">
@@ -40,11 +41,12 @@
 
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, useForm, Link, usePage } from '@inertiajs/vue3';
+import { Head, useForm, usePage } from '@inertiajs/vue3';
 import InputVue from '@/Components/Input.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import GoBack from '@/Components/GoBack.vue';
+import { vMaska } from 'maska';
 
 const pageProps = usePage().props;
 
@@ -52,7 +54,7 @@ const form = useForm({
     serial: pageProps.generator ? pageProps.generator.serial : '',
     brand: pageProps.generator ? pageProps.generator.brand : '',
     model: pageProps.generator ? pageProps.generator.model : '',
-    hourmeter: pageProps.generator ? pageProps.generator.hourmeter : ''
+    hourmeter: pageProps.generator ? parseFloat(pageProps.generator.hourmeter).toFixed(2) : ''
 });
 
 const submit = () => {

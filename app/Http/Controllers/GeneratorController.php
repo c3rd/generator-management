@@ -33,8 +33,17 @@ class GeneratorController extends Controller
     public function show($id)
     {
         $generator = Generator::find($id);
+        $services = $generator->services()->with('employee')->orderBy('service_date', 'desc')->paginate(10)->through(fn ($service) => [
+            'id' => $service->id,
+            'name' => $service->name,
+            'hourmeter' => $service->hourmeter,
+            'service_date' => $service->toArray()['service_date'],
+            'employee' => $service->employee->first_name,
+        ]);
+
         return Inertia::render('Generators/Show', [
-            'generator' => $generator
+            'generator' => $generator,
+            'services' => $services,
         ]);
     }
 
@@ -78,7 +87,6 @@ class GeneratorController extends Controller
 
     public function destroy($id)
     {
-
         $generator = Generator::find($id)->delete();
     }
 }

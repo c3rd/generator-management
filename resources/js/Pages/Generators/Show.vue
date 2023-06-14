@@ -20,9 +20,60 @@
                     </ul>
                 </div>
             </div>
-            <h2 class="mt-5 text-2xl">Últimos Serviços</h2>
-            <Link :href="route('generators.services.create', generator.id)" class="bg-black py-2 px-4 text-white rounded-lg">Adicionar Serviço
-            </Link>
+            <div class="flex justify-center items-center gap-2 mt-5">
+                <h2 class="text-2xl">Últimos Serviços</h2>
+                <Link :href="route('generators.services.create', generator.id)"
+                    class="bg-black py-2 px-4 text-white rounded-lg">Adicionar Serviço
+                </Link>
+            </div>
+        </div>
+        <div class="max-w-7xl grid place-items-center mx-auto">
+            <Table>
+                <template #thead>
+                    <tr>
+                        <th scope="col" class="px-6 py-4">
+                            Descrição
+                        </th>
+                        <th scope="col" class="px-6 py-4">
+                            Data do Serviço
+                        </th>
+                        <th scope="col" class="px-6 py-4">
+                            Horímetro
+                        </th>
+                        <th scope="col" class="px-6 py-4">
+                            Funcionário Responsável
+                        </th>
+                        <th scope="col" class="px-6 py-4">
+                            <span class="sr-only">Edit</span>
+                        </th>
+                    </tr>
+                </template>
+                <tr v-if="services.data.length === 0"
+                    class="border-b transition duration-100 ease-in-out hover:bg-neutral-100">
+                    <td colspan="5" class="">Nenhum
+                        registro encontrado.</td>
+                </tr>
+                <tr v-else v-for="service in services.data"
+                    class="border-b transition duration-100 ease-in-out hover:bg-neutral-200">
+                    <td scope="row" class="whitespace-nowrap px-6 py-4">
+                        {{ service.name }}
+                    </td>
+                    <td class="whitespace-nowrap px-6 py-4">
+                        {{ service.service_date }}
+                    </td>
+                    <td class="whitespace-nowrap px-6 py-4">
+                        {{ service.hourmeter }}
+                    </td>
+                    <td class="whitespace-nowrap px-6 py-4">
+                        {{ service.employee }}
+                    </td>
+                    <td @click.stop class="whitespace-nowrap px-6 py-4">
+                        <Link :href="route('generators.services.edit', {generator: generator.id, service: service.id})"
+                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline"> Edit </Link>
+                    </td>
+                </tr>
+            </Table>
+            <Pagination :links="services.links"></Pagination>
         </div>
     </AuthenticatedLayout>
 </template>
@@ -31,9 +82,12 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import GoBack from '@/Components/GoBack.vue';
 import { Link } from '@inertiajs/vue3';
+import Table from '@/Components/Table.vue';
+import Pagination from '@/Components/Pagination.vue';
 
 defineProps({
-    generator: Array,
+    generator: Object,
+    services: Object,
 })
 
 </script>
